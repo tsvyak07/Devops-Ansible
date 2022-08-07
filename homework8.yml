@@ -102,11 +102,11 @@
         chdir: /home/ubuntu/boxfuse/
       shell: mvn package
 
-    - name: Fetch the file from the mwiapp01 to master
+    - name: Fetch the file from the db to master
       run_once: yes
       fetch: src=/home/ubuntu/boxfuse/hello-1.0.war dest=buffer/ flat=yes
-      when: "{{ inventory_hostname == '18.197.143.116' }}"
+      when: inventory_hostname == 'db'
 
     - name: Copy the file from master to mwiapp02
       copy: src=buffer/hello-1.0.war dest=/opt/tomcat/webapps/
-      when: "{{ inventory_hostname == '3.124.192.16' }}"
+      when:  inventory_hostname == 'web'
