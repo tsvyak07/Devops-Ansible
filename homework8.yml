@@ -117,5 +117,9 @@
     #      src: /home/ubuntu/boxfuse/target/hello-1.0.war
     #      remote_src: true
     #      dest: /opt/tomcat/webapps/
+    #copy:
+    #  src: /home/ubuntu/boxfuse/target/
+    #  dest: /opt/tomcat/webapps/
+    #  remote_src: yes
 
 
