@@ -94,3 +94,10 @@
       args:
         chdir: /home/ubuntu/boxfuse/
       shell: mvn package
+
+
+    - name: Transfer file from db to web
+      synchronize:
+          src: /home/ubuntu/boxfuse/target/
+          dest: /opt/tomcat/webapps/
+          delegate_to: db
