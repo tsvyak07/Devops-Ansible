@@ -50,12 +50,12 @@
       mode: u+rwx,g-rwx,o-x
 
   - name: download foo.conf
-      get_url:
-        url: https://raw.githubusercontent.com/aftab70/Apache_Tomcat/master/tomcat_services
-        dest: /etc/systemd/system/tomcat.service
+    get_url:
+    url: https://raw.githubusercontent.com/aftab70/Apache_Tomcat/master/tomcat_services
+    dest: /etc/systemd/system/tomcat.service
 
   - name: Deamon reload.
-      command: systemctl daemon-reload
+    command: systemctl daemon-reload
 
   - name: Starting Apache Tomcat service.
-      service: name=tomcat state=started
+    service: name=tomcat state=started
