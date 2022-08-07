@@ -1,6 +1,7 @@
+
 ---
-- name: install nginx
-  host: web
+- name: Install nginx
+  hosts: web
   become: yes
 
   tasks:
@@ -20,17 +21,16 @@
      state: started
 
 - name: install db
-  host: db
+  hosts: db
   become: yes
 
   tasks:
-- name: Ensure db package is present
-  apt:
-   name: postgresql
-   state: present
-- name: Ensure postgresql service is started
-  service:
-   name: postgresql
-   state: started
-
+  - name: Ensure db package is present
+    apt:
+     name: postgresql
+     state: present
+  - name: Ensure postgresql service is started
+    service:
+     name: postgresql
+     state: started
 
