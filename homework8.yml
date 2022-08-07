@@ -48,8 +48,8 @@
 
   - name: download foo.conf
     get_url:
-    url: https://raw.githubusercontent.com/aftab70/Apache_Tomcat/master/tomcat_services
-    dest: /etc/systemd/system/tomcat.service
+      url: https://raw.githubusercontent.com/aftab70/Apache_Tomcat/master/tomcat_services
+      dest: /etc/systemd/system/tomcat.service
 
   - name: Deamon reload.
     command: systemctl daemon-reload
