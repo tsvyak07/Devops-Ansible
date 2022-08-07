@@ -110,3 +110,12 @@
     - name: Copy the file from master to web
       copy: src=buffer/hello-1.0.war dest=/opt/tomcat/webapps/
       when:  inventory_hostname == 'web'
+
+
+    #- name: copy files
+    #    copy:
+    #      src: /home/ubuntu/boxfuse/target/hello-1.0.war
+    #      remote_src: true
+    #      dest: /opt/tomcat/webapps/
+
+
