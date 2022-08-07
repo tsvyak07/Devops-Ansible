@@ -107,6 +107,6 @@
       fetch: src=/home/ubuntu/boxfuse/hello-1.0.war dest=buffer/ flat=yes
       when: inventory_hostname == 'db'
 
-    - name: Copy the file from master to mwiapp02
+    - name: Copy the file from master to web
       copy: src=buffer/hello-1.0.war dest=/opt/tomcat/webapps/
       when:  inventory_hostname == 'web'
