@@ -10,16 +10,14 @@
     ignore_errors: yes
 
   - name: Installation JDK.
-    apt: name=default-jdk
-    state: latest
+    apt: name=default-jdk state=latest
 
 
   - name: Adding Group and user for Tomcat.
     shell: groupadd tomcat && useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
 
   - name: Installating curl.
-    apt: name=curl
-    state: latest
+    apt: name=curl state=latest
 
   - name: Installating wget.
     apt: name=wget
