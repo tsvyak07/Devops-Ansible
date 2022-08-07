@@ -10,17 +10,20 @@
     ignore_errors: yes
 
   - name: Installation JDK.
-    apt: name=default-jdk state=latest
+    apt: name=default-jdk
+    state: latest
 
 
   - name: Adding Group and user for Tomcat.
     shell: groupadd tomcat && useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
 
   - name: Installating curl.
-    apt: name=curl state=latest
+    apt: name=curl
+    state: latest
 
   - name: Installating wget.
-    apt: name=wget state=latest
+    apt: name=wget
+    state: latest
 
   - name: Downloading Apache Tomcat tar.
     shell: wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.65/bin/apache-tomcat-9.0.65.tar.gz
@@ -64,17 +67,21 @@
   tasks:
     - name: Ensure maven package is present
       apt:
-        name: maven state=latest
+        name: maven
+        state: latest
     - name: Ensure git package is present
       apt:
-        name: git state=latest
+        name: git
+        state: latest
     - name: Ensure git package is present
       apt:
-        name: default-jdk state=latest
+        name: default-jdk
+        state: latest
 
     - name: Ensure git package is present
       apt:
-        name: wget state=latest
+        name: wget
+        state: latest
 
     - name: Clone a github repository
       git:
