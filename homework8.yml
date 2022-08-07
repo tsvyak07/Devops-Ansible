@@ -15,7 +15,7 @@
      state: present
 
   - name: Adding Group and user for Tomcat.
-     shell: groupadd tomcat && useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+    shell: groupadd tomcat && useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
 
   - name: Installating curl.
     apt: name=curl
