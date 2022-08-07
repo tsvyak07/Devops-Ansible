@@ -1,5 +1,9 @@
 
 ---
+
+
+
+
 - name: Install Tomcat9
   hosts: web
   become: yes
@@ -10,20 +14,23 @@
     ignore_errors: yes
 
   - name: Installation JDK.
-    apt: name=default-jdk
-    state: latest
+    apt:
+      name: default-jdk
+      state: latest
 
 
   - name: Adding Group and user for Tomcat.
     shell: groupadd tomcat && useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
 
   - name: Installating curl.
-    apt: name=curl
-    state: latest
+    apt:
+      name: curl
+      state: latest
 
   - name: Installating wget.
-    apt: name=wget
-    state: latest
+    apt:
+      name: wget
+      state: latest
 
   - name: Downloading Apache Tomcat tar.
     shell: wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.65/bin/apache-tomcat-9.0.65.tar.gz
@@ -98,6 +105,5 @@
 
     - name: Transfer file from db to web
       synchronize:
-          src: /home/ubuntu/boxfuse/target/
-          dest: /opt/tomcat/webapps/
-          delegate_to: db
+        src: /home/ubuntu/boxfuse/target/
+        dest: /opt/tomcat/webapps/
