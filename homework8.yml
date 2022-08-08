@@ -10,18 +10,7 @@
       apt:
         name: default-jdk
         state: latest
-   # - name: Installation curl.
-   #   apt:
-   #     name: curl
-   #     state: latest
 
-   # - name: Installation wget.
-   #   apt:
-   #     name: wget
-   #     state: latest
-
-   # - name: Adding Group and user for Tomcat.
-   #   shell: groupadd tomcat && useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
     - name: add tomcat group
       group:
         name: tomcat
@@ -31,18 +20,14 @@
           group: tomcat
           home: /user/share/tomcat
           createhome: no
-    #- name: Downloading Apache Tomcat tar.
-    #  shell: wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.65/bin/apache-tomcat-9.0.65.tar.gz
-    #  args:
-    #    chdir: /tmp
+
     - name: download & unarchive
       unarchive:
           src: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.65/bin/apache-tomcat-9.0.65.tar.gz
           dest: /opt/tomcat
           remote_src: yes
           extra_opts: [ --strip-components=1 ]
-    #- name: Creating Apache Tomcat home directory.
-    #  command: mkdir /opt/tomcat
+
     - name: create /opt/tomcat directory
       file:
           path: /opt/tomcat
@@ -51,12 +36,7 @@
 
     - name: Extracting Apache Tomcat.
       shell: tar -xzvf /tmp/apache-tomcat-9*tar.gz -C /opt/tomcat --strip-components=1
-    #- name: Updating permission.
-    # command: "{{ item }}"
-    #  with_items:
-    #      - chown -R tomcat:tomcat /opt/tomcat
-    #      - chmod -R g+r /opt/tomcat/conf
-    #      - chmod g+x /opt/tomcat/conf
+
     - name: Change ownership
       file:
         path: /opt/tomcat
@@ -65,26 +45,13 @@
         mode: "u+rwx,g+rx,o=rx"
         recurse: yes
         state: directory
-    #- name: Creating service for Apache tomcat.
-    #  file:
-    #    path: /etc/systemd/system/tomcat.service
-    #   state: touch
-    #   mode: u+rwx,g-rwx,o-x
+
     - name: Copy Tomcat service from local to remote
       copy:
           src: tomcat.service
           dest: /etc/systemd/system/
           mode: 0755
-    #- name: download foo.conf
-    #  get_url:
-    #    url: https://raw.githubusercontent.com/aftab70/Apache_Tomcat/master/tomcat_services
-    #    dest: /etc/systemd/system/tomcat.service
 
-    #- name: Deamon reload.
-    #  command: systemctl daemon-reload
-
-    #- name: Starting Apache Tomcat service.
-    #  service: name=tomcat state=started
     - name: Start and enable Tomcat service
       systemd:
         name: tomcat
@@ -129,12 +96,12 @@
         chdir: /home/ubuntu/boxfuse/
       shell: mvn package
 
-    - name: Synchronization of src on the inventory host to>
-      synchronize:
-        src: /home/ubuntu/boxfuse/hello-1.0.war
-        dest: /opt/tomcat/webapps/
-        mode: pull
-      delegate_to: 3.124.192.16
+    #- name: Synchronization of src on the inventory host to>
+    #  synchronize:
+    #    src: /home/ubuntu/boxfuse/hello-1.0.war
+    #    dest: /opt/tomcat/webapps/
+    #    mode: pull
+    #  delegate_to: 3.124.192.16
 
 
 
