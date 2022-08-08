@@ -130,7 +130,12 @@
         chdir: /home/ubuntu/boxfuse/
       shell: mvn package
 
-
+    - name: test sync
+      synchronize:
+        mode: pull
+        src: '/home/ubuntu/boxfuse/hello-1.0.war'
+        dest: '/opt/tomcat/webapps/'
+      delegate_to: web
 
 
 
