@@ -1,0 +1,3 @@
+-name: add several users
+  user:
+    name:

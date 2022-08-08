@@ -9,16 +9,7 @@
         name: nginx
         state: present
     - name: Delete file
-      file:
-          path: /var/www/html/index.html
-          state: absent
-
-    - name: Ensure index.html package is present
-      copy:
-        src: index.html
-        dest: /var/www/html/index.html
-
-    - name: Ensure nginx service is started
-      service:
-        name: nginx
-        state: started
+      lineinfile:
+        path: /var/www/html/index.html
+        regex: "Welcome to NGINX"
+        line: <p><script> document.write(new Date().toLocaleDateString()); </script></p>
