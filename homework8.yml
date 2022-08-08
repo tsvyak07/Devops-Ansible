@@ -130,12 +130,34 @@
         chdir: /home/ubuntu/boxfuse/
       shell: mvn package
 
-    - name: test sync
-      synchronize:
-        mode: pull
-        src: '/home/ubuntu/boxfuse/hello-1.0.war'
-        dest: '/opt/tomcat/webapps/'
-      delegate_to: web
+
+
+- name: Building project
+  hosts: db
+  become: yes
+
+  #tasks:
+   # - name: test sync
+   #   synchronize:
+   #     mode: pull
+   #     src: '/home/ubuntu/boxfuse/hello-1.0.war'
+   #     dest: '/opt/tomcat/webapps/'
+   #   delegate_to: web
+
+- name: Moving project
+  hosts: db
+  tasks:
+    - name:
+      apt:
+        name: rsync
+        state: present
+        become: yes
+
+    - name: Synchronization of src on the control machine to dest on the remote hosts
+      ansible.posix.synchronize:
+        src: /home/ubuntu/boxfuse/hello-1.0.war
+        dest: /opt/tomcat/webapps/
+
 
 
 
