@@ -1,9 +1,5 @@
 
 ---
-
-
-
-
 - name: Install Tomcat9
   hosts: web
   become: yes
