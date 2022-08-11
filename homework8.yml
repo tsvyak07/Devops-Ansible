@@ -1,3 +1,4 @@
+GNU nano 6.2                                                                                                                                                                                             homework8.yml
 ---
 - name: Install Tomcat9
   hosts: web
@@ -11,28 +12,28 @@
         name: default-jdk
         state: latest
 
-    - name: add tomcat group
-      group:
-        name: tomcat
-    - name: add tomcat user
-      user:
-          name: tomcat
-          group: tomcat
-          home: /user/share/tomcat
-          createhome: no
+    #    - name: add tomcat group
+    #      group:
+    #        name: tomcat
+    #    - name: add tomcat user
+    #      user:
+    #          name: tomcat
+    #          group: tomcat
+    #          home: /user/share/tomcat
+    #          createhome: no
 
     - name: download & unarchive
       unarchive:
-          src: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.65/bin/apache-tomcat-9.0.65.tar.gz
-          dest: /opt/tomcat
-          remote_src: yes
-          extra_opts: [ --strip-components=1 ]
+        src: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.65/bin/apache-tomcat-9.0.65.tar.gz
+        dest: /opt/tomcat
+        remote_src: yes
+        extra_opts: [ --strip-components=1 ]
 
     - name: create /opt/tomcat directory
       file:
-          path: /opt/tomcat
-          state: directory
-          mode: 0755
+        path: /opt/tomcat
+        state: directory
+        mode: 0755
 
     - name: Extracting Apache Tomcat.
       shell: tar -xzvf /tmp/apache-tomcat-9*tar.gz -C /opt/tomcat --strip-components=1
@@ -46,11 +47,11 @@
         recurse: yes
         state: directory
 
-    - name: Copy Tomcat service from local to remote
-      copy:
-          src: tomcat.service
-          dest: /etc/systemd/system/
-          mode: 0755
+    #    - name: Copy Tomcat service from local to remote
+    #      copy:
+    #          src: tomcat.service
+    #          dest: /etc/systemd/system/
+    #          mode: 0755
 
     - name: Start and enable Tomcat service
       systemd:
@@ -93,15 +94,9 @@
 
     - name: Synchronization of src on the inventory host to>
       synchronize:
-        src: /home/ubuntu/boxfuse/hello-1.0.war
+        src: /home/ubuntu/boxfuse/target/hello-1.0.war
         dest: /opt/tomcat/webapps/
         mode: pull
       delegate_to: 3.124.192.16
-
-
-
-
-
-
 
 
